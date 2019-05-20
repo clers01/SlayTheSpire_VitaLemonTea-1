@@ -2,27 +2,6 @@
 #include "StateVariables.h"
 #include <time.h>
 #define random(x) (rand()%x)
-#define damage(x) target->EnemyBlock -= int((x + Strength) * WeakCoefficient * target->Vulnerable)
-
-Cards::Cards(void)
-{
-}
-
-
-Cards::~Cards(void)
-{
-}
-
-int Cards::EnergyConsume(int x, StateVariables* player)
-{
-	if (player->Energy < x)
-		return 0;
-	else
-	{
-		player->Energy -= x;
-		return 1;
-	}
-}
 
 StateVariables::StateVariables(void)
 {
@@ -49,11 +28,22 @@ StateVariables::StateVariables(void)
 		Deck[i] = 0;//剩下的空位用0表示
 	}
 	DrawNum = 5;//每回合抽5张牌
+	DeckPoint = 10;
+	Strength = 0;
+	StrengthUp = 0;
+	StrengthUpTemp = 0;
+	Dexterity = 0;
+	DexterityUpTemp = 0;
 	CanDraw = 1;
 	FlameBarrier = 0;
 	Berserk = 0;
+	Juggernaut = 0;//Juggernaut效果
+	Combust = 0;//Combust效果
+	Metallicize = 0;//Metallicize效果
+	RampageTime = 0;//Rampage使用次数
+	Barricade = 0;//Barricade效果
+	Brutality = 0;//Brutality效果
 }
-
 
 StateVariables::~StateVariables(void)
 {
@@ -83,7 +73,7 @@ void StateVariables::addToDrawPile(int cardnum)
 	DrawPile[temp] = cardnum;
 }
 
-void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0)
+/*void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0)
 {
 	switch (cardnum)
 	{
@@ -105,7 +95,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0)
 			target->State_Vulnerable += 2;
 		}
 	}break;
-	/*
+
 	case 1001:
 	{
 		if(Deck[cardnum]->EnergyConsume(2, this))
@@ -651,6 +641,71 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0)
 	case 63:
 	{
 		Brutality = 1;
-	}break;*/
+	}break;
 	}
+}*/
+
+void StateVariables::Dexup(int DexupVal, Enemy* target = NULL, int EnemyNum = 0)
+{
+	if (Frail)
+	{
+		Block += int((DexupVal + Dexterity) * 0.75);
+	}
+	else
+	{
+		Block += DexupVal + Dexterity;
+	}
+	if (Juggernaut)
+	{
+		randomDamage(Juggernaut, target, EnemyNum);
+	}
+}
+
+void StateVariables::randomDamage(int damage, Enemy* target, int n)
+{
+	srand((unsigned int)(time(NULL)));
+	int t = random(n);
+	if ((target + t)->EnemyBlock >= damage)
+	{
+		(target + t)->EnemyBlock -= damage;
+	}
+	else
+	{
+		(target + t)->EnemyHP -= (damage - (target->EnemyBlock));
+		(target + t)->EnemyBlock = 0;
+	}
+}
+
+void StateVariables::combust(Enemy* target, int EnemyNum)
+{
+	if (Combust)
+	{
+		int iter;
+		for (iter = 0; iter < EnemyNum; iter++)
+		{
+			if ((target + iter)->EnemyBlock >= Combust)
+			{
+				(target + iter)->EnemyBlock -= Combust;
+			}
+			else
+			{
+				(target + iter)->EnemyHP -= (Combust - (target + iter)->EnemyBlock);
+				(target + iter)->EnemyBlock = 0;
+			}
+		}
+	}
+}
+
+void StateVariables::metallicize(Enemy* target = NULL, int EnemyNum = 0)
+{
+	if (Metallicize)
+	{
+		Dexup(Metallicize, target, EnemyNum);
+	}
+}
+
+void StateVariables::brutality(void)
+{
+	HP -= 1;
+	draw(1);
 }

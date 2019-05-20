@@ -14,7 +14,9 @@ Enemy::Enemy(int hp, unsigned int damage1, unsigned int attackTimes1, unsigned i
 	State_Vulnerable = 0;
 	State_Poison = 0;
 	State_Ritual = 0;
+	State_Weak = 0;
 	strength = 0;
+	intend = 0;
 }
 
 

@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BattleMap.cpp" />
+    <ClCompile Include="Cards.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy1.cpp" />
     <ClCompile Include="OverAll.cpp" />

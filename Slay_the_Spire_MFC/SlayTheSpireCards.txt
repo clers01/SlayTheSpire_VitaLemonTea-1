@@ -1,4 +1,4 @@
-1:Bash
+﻿1:Bash
 （Energy：2）Deal 8(10) damage. Apply 2(3) Vulnerable.
 
 2:Defend
