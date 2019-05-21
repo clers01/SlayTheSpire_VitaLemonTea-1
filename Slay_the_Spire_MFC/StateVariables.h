@@ -45,12 +45,12 @@ public:
 	int Brutality;//Brutality效果
 
 	void draw(int drawnum);
-//	void usecard(int cardnum, Enemy* target, int n);
+	void usecard(int cardnum, Enemy* target, int n = 0);
 	void addToDrawPile(int cardnum);
 	void randomDamage(int damage, Enemy* target, int n);
 	void combust(Enemy* target, int EnemyNum);
 	void metallicize(Enemy* target, int EnemyNum);
-	void Dexup(int DexupVal, Enemy* target, int EnemyNum);
+	void Defend(int DefendVal, Enemy* target = NULL, int EnemyNum = 0);
 	void brutality(void);
 };
 
@@ -92,6 +92,6 @@ public:
 	unsigned int EnergyCost;//费用
 
 	int EnergyConsume(int x, StateVariables* player);
-	void Damage(int damage, Enemy* target, int n);
-	void Dexup(int DexupVal, StateVariables* player, Enemy* targetL, int EnemyNum);
+	void Damage(int damage, Enemy* target, int n = 0);
+	void Defend(int DeefendVal, StateVariables* player, Enemy* target = NULL, int EnemyNum = 0);
 };

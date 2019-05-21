@@ -73,16 +73,16 @@ void StateVariables::addToDrawPile(int cardnum)
 	DrawPile[temp] = cardnum;
 }
 
-/*void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0)
+void StateVariables::usecard(int cardnum, Enemy* target, int n)
 {
 	switch (cardnum)
 	{
 	case 3:
 	{
-		if (Deck[cardnum]->EnergyConsume(1, this))
-			target->EnemyBlock -= int((6 + Strength) * WeakCoefficient * target->Vulnerable);
+		if (GameDeck[cardnum]->EnergyConsume(1, this))
+			GameDeck[cardnum]->Damage(6, target);
 	}break;
-	case 1003:
+/*	case 1003:
 	{
 		if (Deck[cardnum]->EnergyConsume(1, this))
 			target->EnemyBlock -= int((9 + Strength) * WeakCoefficient * target->Vulnerable);
@@ -641,11 +641,11 @@ void StateVariables::addToDrawPile(int cardnum)
 	case 63:
 	{
 		Brutality = 1;
-	}break;
+	}break;*/
 	}
-}*/
+}
 
-void StateVariables::Dexup(int DexupVal, Enemy* target = NULL, int EnemyNum = 0)
+void StateVariables::Defend(int DefendVal, Enemy* target, int EnemyNum)
 {
 	if (Frail)
 	{
@@ -700,7 +700,7 @@ void StateVariables::metallicize(Enemy* target = NULL, int EnemyNum = 0)
 {
 	if (Metallicize)
 	{
-		Dexup(Metallicize, target, EnemyNum);
+		Defend(Metallicize, target, EnemyNum);
 	}
 }
 

@@ -22,7 +22,7 @@ int Cards::EnergyConsume(int x, StateVariables* player)
 	}
 }
 
-void Cards::Damage(int damage, Enemy* target, int n = 0)
+void Cards::Damage(int damage, Enemy* target, int n)
 {
 	if (n)
 	{
@@ -54,7 +54,7 @@ void Cards::Damage(int damage, Enemy* target, int n = 0)
 	}
 }
 
-void Cards::Dexup(int DexupVal, StateVariables* player, Enemy* target = NULL, int EnemyNum = 0)
+void Cards::Defend(int defend, StateVariables* player, Enemy* target, int EnemyNum)
 {
-	player->Dexup(DexupVal, target, EnemyNum);
+	player->Defend(defend, target, EnemyNum);
 }
