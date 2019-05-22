@@ -19,34 +19,40 @@ public:
 	int Dexterity;//敏捷
 	int DexterityUpTemp;//单回合增加的敏捷
 	int Gold;//金币
-	unsigned int Hand[10];//手牌
+	int Hand[10];//手牌
 	Cards* GameDeck[300];//游戏牌库
-	unsigned int GameDeckPoint;//游戏牌库指针
+	int GameDeckPoint;//游戏牌库牌数
 	Cards* Deck[100];//玩家牌库
-	unsigned int DeckPoint;//玩家牌库指针
+	int DeckPoint;//玩家牌库牌数
+	int* DeckPtr;//玩家牌库牌数指针
 	int DrawNum;
 	int DrawPile[100];//抽牌堆数组
 	int DiscardPile[100];
-	int DrawPoint;//抽牌堆指针
-	int DiscardPoint;//弃牌堆指针
-	int HandPoint;//手牌指针
+	int DrawPoint;//抽牌堆牌数
+	int* DrawPtr;//抽牌堆牌数指针
+	int DiscardPoint;//弃牌堆牌数
+	int* DiscardPtr;//	弃牌堆牌数指针
+	int HandPoint;//手牌数
+	int* HandPtr;//手牌数指针
 	int StrengthUp;//每回合增加力量
 	int Vulnerable;//易伤
 	int Weak;//虚弱
 	int Berserk;//下回合开始获得Energy
-	int Frail;//被破甲
+	int Frail;//脆弱
 	int CanDraw;//是否可继续摸牌
-	int FlameBarrier;//FB效果
-	int Juggernaut;//Juggernaut效果
+	int FlameBarrier;//火焰屏障效果
+	int Juggernaut;//势不可挡效果
 	int Combust;//Combust效果
-	int Metallicize;//Metallicize效果
+	int Metallicize;//金属化效果
 	int RampageTime;//Rampage使用次数
 	int Barricade;//Barricade效果
 	int Brutality;//Brutality效果
+	int Evolve;//进化效果
+	int EnemyNum;//怪物数量
 
 	void draw(int drawnum);
-//	void usecard(int cardnum, Enemy* target, int n);
-	void addToDrawPile(int cardnum);
+	void usecard(int cardnum, Enemy* target, int n, Cards* GameDeck[], StateVariables* player);
+	void addTo(int cardnum, int Pile[], int* pilePoint);
 	void randomDamage(int damage, Enemy* target, int n);
 	void combust(Enemy* target, int EnemyNum);
 	void metallicize(Enemy* target, int EnemyNum);
@@ -90,8 +96,7 @@ public:
 	~Cards(void);
 	unsigned int CardsNum;//卡牌编号
 	unsigned int EnergyCost;//费用
-
 	int EnergyConsume(int x, StateVariables* player);
-	void Damage(int damage, Enemy* target, int n);
-	void Dexup(int DexupVal, StateVariables* player, Enemy* targetL, int EnemyNum);
+	void Damage(int damage, StateVariables* player, Enemy* target, int n);
+	void Defence(int block, StateVariables* player, Enemy* target);
 };
