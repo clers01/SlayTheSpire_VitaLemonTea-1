@@ -52,7 +52,7 @@ StateVariables::StateVariables(void)
 	RampageTime = 0;//Rampage使用次数
 	Barricade = 0;//Barricade效果
 	Brutality = 0;//Brutality效果
-	Evolve = 0;
+	Evolve = 0;//进化效果
 	EnemyNum = 0;
 }
 
@@ -752,6 +752,48 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			else
 				return;
 		}
+
+		case 40: //御血术
+		{
+			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
+			{
+				player->HP -= 3;
+				GameDeck[cardnum]->Damage(14, player, target, 0);
+				break;
+			}
+			else
+				return;
+		}
+
+		case 240: //御血术+
+		{
+			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
+			{
+				player->HP -= 2;
+				GameDeck[cardnum]->Damage(18, player, target, 0);
+				break;
+			}
+			else
+				return;
+		}
+
+		/*case 41: //地狱之刃
+		{
+			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
+			{
+				int i = random(400);
+				while(!isAttack(i))
+				{
+				    i = random(400);
+				}
+				addTo(i, Hand, HandPtr);
+				break;
+			}
+			else
+				return;
+		}*/
+
+		case 42: 
 
 	}
 }
