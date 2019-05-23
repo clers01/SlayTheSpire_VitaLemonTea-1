@@ -1,3 +1,4 @@
+
 #include "stdafx.h"
 #include "StateVariables.h"
 
@@ -70,5 +71,5 @@ void Cards::Defence(int block, StateVariables * player, Enemy* target = NULL)
 			player->randomDamage(player->Juggernaut, target, player->EnemyNum);
 		}
 		player->Block += pre_block;
-	}
+  }
 }

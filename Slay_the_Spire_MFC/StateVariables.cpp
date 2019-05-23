@@ -21,13 +21,13 @@ StateVariables::StateVariables(void)
 	Deck[6] = GameDeck[3];
 	Deck[7] = GameDeck[3];
 	Deck[8] = GameDeck[3];
-	Deck[9] = GameDeck[2];//Éú³ÉÖ»ÓĞÊ®ÕÅ³õÊ¼ÅÆµÄÅÆ¿â
+	Deck[9] = GameDeck[2];//ç”Ÿæˆåªæœ‰åå¼ åˆå§‹ç‰Œçš„ç‰Œåº“
 	int i;
 	for (i = 10; i <= 99; i++)
 	{
-		Deck[i] = 0;//Ê£ÏÂµÄ¿ÕÎ»ÓÃ0±íÊ¾
+		Deck[i] = 0;//å‰©ä¸‹çš„ç©ºä½ç”¨0è¡¨ç¤º
 	}
-	DrawNum = 5;//Ã¿»ØºÏ³é5ÕÅÅÆ
+	DrawNum = 5;//æ¯å›åˆæŠ½5å¼ ç‰Œ
 	DeckPoint = 10;
 	DeckPtr = &DeckPoint;
 	DrawPoint = 0;
@@ -46,13 +46,13 @@ StateVariables::StateVariables(void)
 	CanDraw = 1;
 	FlameBarrier = 0;
 	Berserk = 0;
-	Juggernaut = 0;//JuggernautĞ§¹û
-	Combust = 0;//CombustĞ§¹û
-	Metallicize = 0;//MetallicizeĞ§¹û
-	RampageTime = 0;//RampageÊ¹ÓÃ´ÎÊı
-	Barricade = 0;//BarricadeĞ§¹û
-	Brutality = 0;//BrutalityĞ§¹û
-	Evolve = 0;//½ø»¯Ğ§¹û
+	Juggernaut = 0;//Juggernautæ•ˆæœ
+	Combust = 0;//Combustæ•ˆæœ
+	Metallicize = 0;//Metallicizeæ•ˆæœ
+	RampageTime = 0;//Rampageä½¿ç”¨æ¬¡æ•°
+	Barricade = 0;//Barricadeæ•ˆæœ
+	Brutality = 0;//Brutalityæ•ˆæœ
+	Evolve = 0;//è¿›åŒ–æ•ˆæœ
 	EnemyNum = 0;
 }
 
@@ -90,7 +90,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 	addTo(cardnum, DiscardPile, DiscardPtr);
 	switch (cardnum)
 	{
-	    case 1: //Í´»÷
+	    case 1: //ç—›å‡»
 	    {
 		    if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 		    {
@@ -102,7 +102,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			    return;
 	    }
 
-	    case 201: //Í´»÷+
+	    case 201: //ç—›å‡»+
 	    {
 		    if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 		    {
@@ -114,7 +114,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			    return;
 	    }
 
-	    case 2: //·ÀÓù
+	    case 2: //é˜²å¾¡
 	    {
 		    if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 		    {
@@ -125,7 +125,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			    return;
 	    }
 
-		case 202: //·ÀÓù+
+		case 202: //é˜²å¾¡+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -136,7 +136,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 3: //´ò»÷
+		case 3: //æ‰“å‡»
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -147,7 +147,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 203: //´ò»÷+
+		case 203: //æ‰“å‡»+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -158,7 +158,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 4: //·ßÅ­
+		case 4: //æ„¤æ€’
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -170,7 +170,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 204: // ·ßÅ­+
+		case 204: // æ„¤æ€’+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -183,7 +183,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 		}
 		//case 5:
 
-		case 6: //È«Éí×²»÷
+		case 6: //å…¨èº«æ’å‡»
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -194,7 +194,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 206: //È«Éí×²»÷+
+		case 206: //å…¨èº«æ’å‡»+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -228,7 +228,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 9: //½ğ¸Õ±Û
+		case 9: //é‡‘åˆšè‡‚
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -240,7 +240,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 209: //½ğ¸Õ±Û+
+		case 209: //é‡‘åˆšè‡‚+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -252,7 +252,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 10: //»î¶¯¼¡Èâ
+		case 10: //æ´»åŠ¨è‚Œè‚‰
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -264,7 +264,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 210: //»î¶¯¼¡Èâ+
+		case 210: //æ´»åŠ¨è‚Œè‚‰+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -276,11 +276,11 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 11: //ÆÆÃğ
+		case 11: //ç ´ç­
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
-				usecard(DrawPile[DrawPoint - 1], target, n); //ÏûºÄ¹¦ÄÜÃ»ÊµÏÖ
+				usecard(DrawPile[DrawPoint - 1], target, n); //æ¶ˆè€—åŠŸèƒ½æ²¡å®ç°
 				DrawPile[DrawPoint - 1] = 0;
 				*DrawPtr -= 1;
 				break;
@@ -289,11 +289,11 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 211: //ÆÆÃğ+
+		case 211: //ç ´ç­+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
-				usecard(DrawPile[DrawPoint - 1], target, n); //ÏûºÄ¹¦ÄÜÃ»ÊµÏÖ
+				usecard(DrawPile[DrawPoint - 1], target, n); //æ¶ˆè€—åŠŸèƒ½æ²¡å®ç°
 				DrawPile[DrawPoint - 1] = 0;
 				*DrawPtr -= 1;
 				break;
@@ -304,7 +304,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 
 		//case 12
 
-		case 13: //ÖØÈĞ
+		case 13: //é‡åˆƒ
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -315,7 +315,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 213: //ÖØÈĞ+
+		case 213: //é‡åˆƒ+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -326,7 +326,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 14: //ÌúÕ¶²¨
+		case 14: //é“æ–©æ³¢
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -337,7 +337,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			else
 				return;
 		}
-		case 214: //ÌúÕ¶²¨+
+		case 214: //é“æ–©æ³¢+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -349,14 +349,14 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		/*case 15 //ÍêÃÀ´ò»÷
+		/*case 15 //å®Œç¾æ‰“å‡»
 		{
 		    if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
 				int strikeSum;
 				for (int i = 0; i < DeckPoint; i++)
 				{
-					if (ifstrike(Deck[i]))  //ifstrikeÅĞ¶ÏÅÆ´ø²»´ø¡°´ò»÷¡±£¬Î´ÊµÏÖ
+					if (ifstrike(Deck[i]))  //ifstrikeåˆ¤æ–­ç‰Œå¸¦ä¸å¸¦â€œæ‰“å‡»â€ï¼Œæœªå®ç°
 					{
 						sumStrike += 1;
 					}
@@ -369,7 +369,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 		}
 		*/
 
-		case 16: //½£±ú´ò»÷
+		case 16: //å‰‘æŸ„æ‰“å‡»
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -380,7 +380,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			else
 				return;
 		}
-		case 216: //½£±ú´ò»÷+
+		case 216: //å‰‘æŸ„æ‰“å‡»+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -392,7 +392,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 17: //ËÊ¼çÎŞÊÓ
+		case 17: //è€¸è‚©æ— è§†
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -404,7 +404,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 217: //ËÊ¼çÎŞÊÓ+
+		case 217: //è€¸è‚©æ— è§†+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -416,7 +416,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 18: //·É½£»ØĞıïÚ
+		case 18: //é£å‰‘å›æ—‹é•–
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -427,7 +427,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 218: //·É½£»ØĞıïÚ+
+		case 218: //é£å‰‘å›æ—‹é•–+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -456,7 +456,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 
 		//case 20
 
-		case 21: //Ë«ÖØ´ò»÷
+		case 21: //åŒé‡æ‰“å‡»
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -468,7 +468,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 221: //Ë«ÖØ´ò»÷+
+		case 221: //åŒé‡æ‰“å‡»+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -480,9 +480,9 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		//case 22: //Õ½ºğ
+		//case 22: //æˆ˜å¼
 
-		case 23: //¿ñÒ°´ò»÷
+		case 23: //ç‹‚é‡æ‰“å‡»
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -493,7 +493,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 			else
 				return;
 		}
-		case 223: //¿ñÒ°´ò»÷+
+		case 223: //ç‹‚é‡æ‰“å‡»+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -505,7 +505,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 24: //Õ½¶·×¨×¢
+		case 24: //æˆ˜æ–—ä¸“æ³¨
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -517,7 +517,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 224: //Õ½¶·×¨×¢
+		case 224: //æˆ˜æ–—ä¸“æ³¨
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -529,9 +529,9 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		//case 25 ÒÔÑª»¹Ñª£¬ĞèÒª¡°DamageCount¡±±äÁ¿
+		//case 25 ä»¥è¡€è¿˜è¡€ï¼Œéœ€è¦â€œDamageCountâ€å˜é‡
 
-		case 26: //·ÅÑª
+		case 26: //æ”¾è¡€
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -543,7 +543,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 	
-		case 226: //·ÅÑª+
+		case 226: //æ”¾è¡€+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -557,7 +557,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 
 		//case 27
 
-		case 28: //²ĞÉ±£¬ ĞéÎŞÎ´ÊµÏÖ
+		case 28: //æ®‹æ€ï¼Œ è™šæ— æœªå®ç°
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -568,7 +568,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 228: //²ĞÉ±+£¬ ĞéÎŞÎ´ÊµÏÖ
+		case 228: //æ®‹æ€+ï¼Œ è™šæ— æœªå®ç°
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -579,7 +579,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
      
-		case 29: //×ÔÈ¼
+		case 29: //è‡ªç‡ƒ
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -590,7 +590,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 229: //×ÔÈ¼+
+		case 229: //è‡ªç‡ƒ+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -601,9 +601,9 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		//case 30: //¸¯»¯
+		//case 30: //è…åŒ–
 
-		case 31: //½ÉĞµ
+		case 31: //ç¼´æ¢°
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -614,7 +614,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 231: //½ÉĞµ+
+		case 231: //ç¼´æ¢°+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -625,7 +625,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 32: //·ÉÉíÌß
+		case 32: //é£èº«è¸¢
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -641,7 +641,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 232: //·ÉÉíÌß+
+		case 232: //é£èº«è¸¢+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -657,9 +657,9 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		//case 33: //Ë«³Ö
+		//case 33: //åŒæŒ
 
-		case 34: //¹®¹Ì
+		case 34: //å·©å›º
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -670,7 +670,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 234: //¹®¹Ì+
+		case 234: //å·©å›º+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -681,7 +681,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 35: //½ø»¯
+		case 35: //è¿›åŒ–
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -692,7 +692,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 235: //½ø»¯+
+		case 235: //è¿›åŒ–+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -707,7 +707,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 
 		//case 37
 
-		case 38: //»ğÑæÆÁÕÏ
+		case 38: //ç«ç„°å±éšœ
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -719,7 +719,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 238: //»ğÑæÆÁÕÏ+
+		case 238: //ç«ç„°å±éšœ+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -731,7 +731,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 39: //ÓÄÁéîø¼×£¬ ĞéÎŞÎ´ÊµÏÖ
+		case 39: //å¹½çµé“ ç”²ï¼Œ è™šæ— æœªå®ç°
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -742,7 +742,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 239: //ÓÄÁéîø¼×+£¬ ĞéÎŞÎ´ÊµÏÖ
+		case 239: //å¹½çµé“ ç”²+ï¼Œ è™šæ— æœªå®ç°
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -753,7 +753,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 40: //ÓùÑªÊõ
+		case 40: //å¾¡è¡€æœ¯
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -765,7 +765,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		case 240: //ÓùÑªÊõ+
+		case 240: //å¾¡è¡€æœ¯+
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -777,7 +777,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 				return;
 		}
 
-		/*case 41: //µØÓüÖ®ÈĞ
+		/*case 41: //åœ°ç‹±ä¹‹åˆƒ
 		{
 			if (GameDeck[cardnum]->EnergyConsume(GameDeck[cardnum]->EnergyCost, player))
 			{
@@ -798,7 +798,7 @@ void StateVariables::usecard(int cardnum, Enemy* target = NULL, int n = 0, Cards
 	}
 }
 
-void StateVariables::Dexup(int DexupVal, Enemy* target = NULL, int EnemyNum = 0)   //ÓĞĞ©»ñµÃ¸ñµ²µÄĞ§¹ûÊÇÓëÃô½İĞéÈõÎŞ¹ØµÄ£¬ËùÒÔ±£ÁôÕâ¸öº¯Êı
+void StateVariables::Dexup(int DexupVal, Enemy* target = NULL, int EnemyNum = 0)   //æœ‰äº›è·å¾—æ ¼æŒ¡çš„æ•ˆæœæ˜¯ä¸æ•æ·è™šå¼±æ— å…³çš„ï¼Œæ‰€ä»¥ä¿ç•™è¿™ä¸ªå‡½æ•°
 {
 	if (Frail)
 	{
